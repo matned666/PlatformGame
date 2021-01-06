@@ -12,6 +12,6 @@ with sounds edited by @matned666 <br>
 <br>
 <br>
 For more information check my website at:
-<html><a href="https://mrndesign.eu/">https://mrndesign.eu</a></html>
+<html lang="en"><a href="https://mrndesign.eu/">https://mrndesign.eu</a></html>
 <br>
 Check it out and dont forget to send a feedback !! ;-)
