@@ -13,7 +13,7 @@ import java.util.List;
 
 import static eu.mrndesign.matned.client.core.utils.Constants.GUN_X;
 import static eu.mrndesign.matned.client.core.utils.Constants.GUN_Y;
-import static eu.mrndesign.matned.client.core.utils.Images.PNG;
+import static eu.mrndesign.matned.client.core.utils.Images. PNG;
 
 
 public class GamePresenter implements GameContract.Presenter {
