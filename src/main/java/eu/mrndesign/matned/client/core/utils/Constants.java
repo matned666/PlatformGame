@@ -20,6 +20,7 @@ public class Constants {
     public static final int HERO_X_SIZE = 130;
     public static final int HERO_Y_SIZE = 120;
     public static final int TARGET_SIZE = 35;
+    public static final int GUN_SIZE = 50;
     public static final int GUN_X = 55;
     public static final int GUN_Y = -35;
 }

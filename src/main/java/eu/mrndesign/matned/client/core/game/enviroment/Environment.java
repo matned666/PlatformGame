@@ -7,25 +7,33 @@ import static eu.mrndesign.matned.client.core.utils.Constants.ENVIRONMENT_FRAME;
 
 public class Environment implements ViewEnvironment {
 
+    private final long id;
     private String image;
     private double xPos;
     private double yPos;
-    private double xSize;
-    private double ySize;
+    private final double xSize;
+    private final double ySize;
     private boolean step;
-    private double frame;
 
-    public Environment(String image, double xPos, double yPos, double xSize, double ySize) {
+    private final double objectBorderThickness;
+
+    public Environment(long id, String image, double xPos, double yPos, double xSize, double ySize) {
+        this.id = id;
         this.image = image;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSize = xSize;
         this.ySize = ySize;
-        this.frame = ENVIRONMENT_FRAME;
+        this.objectBorderThickness = ENVIRONMENT_FRAME;
         step = false;
     }
 
-//    checks if there is a mouse on the environment object
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    //    checks if there is a mouse on the environment object
     @Override
     public boolean isMouseOn() {
         double mouseX = MouseListener.getInstance().getMouseX();
@@ -40,7 +48,7 @@ public class Environment implements ViewEnvironment {
         double eYPos = environment.getyPos();
         double eXSize = environment.getxSize();
         double eYSize = environment.getySize();
-        return (xPos+xSize-frame >= eXPos) && (yPos+ySize-frame >= eYPos) && (xPos+frame <= eXPos+eXSize) && (yPos+frame <= eYPos+eYSize);
+        return (xPos+xSize- objectBorderThickness >= eXPos) && (yPos+ySize- objectBorderThickness >= eYPos) && (xPos+ objectBorderThickness <= eXPos+eXSize) && (yPos+ objectBorderThickness <= eYPos+eYSize);
     }
 
     @Override

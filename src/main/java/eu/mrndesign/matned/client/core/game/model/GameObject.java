@@ -1,16 +1,14 @@
 package eu.mrndesign.matned.client.core.game.model;
 
-public interface GameObject {
+import eu.mrndesign.matned.client.core.game.BaseModel;
 
-    String getName();
+public interface GameObject extends BaseModel {
+
     int getHealth();
+    String getName();
     double getMaxSpeed();
     int getHitPower();
-    boolean isEnemy();
-
     ModelType modelType();
-
     void receiveHit(int hitPoints);
-
 
 }

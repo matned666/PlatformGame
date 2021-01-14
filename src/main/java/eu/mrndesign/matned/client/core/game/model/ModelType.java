@@ -4,6 +4,7 @@ public enum ModelType {
 
     HERO,
     HERO_GUN,
+    TARGET,
     ENEMY;
 
 

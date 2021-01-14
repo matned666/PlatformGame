@@ -12,7 +12,6 @@ public class Level1 extends BaseLevel {
         for (int i = 0; i < 12; i++) {
             enemies.add(new GameObjectModel.GameObjectModelBuilder("Enemy1", 10, ModelType.ENEMY)
                     .hitPower(4)
-                    .isEnemy(true)
                     .maxSpeed(5)
                     .build());
         }
