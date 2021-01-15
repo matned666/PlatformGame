@@ -1,5 +1,7 @@
 package eu.mrndesign.matned.client.core.game.model;
 
+import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObject;
+
 import java.util.List;
 
 public interface Game {
@@ -15,5 +17,6 @@ public interface Game {
     GameObject getHero();
     GameObject getGun();
     GameObject getTarget();
+    void putEnemy();
 
 }

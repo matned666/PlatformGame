@@ -1,6 +1,8 @@
 package eu.mrndesign.matned.client.core.game.model.level;
 
 import eu.mrndesign.matned.client.core.game.model.*;
+import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObject;
+import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObjectModel;
 
 import java.util.LinkedList;
 import java.util.List;

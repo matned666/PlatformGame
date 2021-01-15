@@ -2,6 +2,7 @@ package eu.mrndesign.matned.client.core.game;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.user.client.Timer;
@@ -27,7 +28,7 @@ public class GameView implements GameContract.View {
         this.canvas = canvas;
         canvas.setFocus(true);
         this.context = canvas.getContext2d();
-        presenter = new GamePresenter(this);
+        presenter = new GamePresenter();
         initAll();
         final Timer timer;
         timer = new Timer() {
@@ -44,6 +45,7 @@ public class GameView implements GameContract.View {
         initializeEnvironment();
         this.canvas.addMouseMoveHandler(this::mouseListen);
         canvas.addKeyDownHandler(this::arrowsSteering);
+        canvas.addClickHandler(this::mouseClick);
 
     }
 
@@ -53,17 +55,22 @@ public class GameView implements GameContract.View {
     }
 
     private void running() {
+        presenter.action(GameContract.ActionType.PUT_ENEMY);
         presenter.action(GameContract.ActionType.UPDATE, environment);
         paintOnCanva(context, presenter.backGround(), 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         putViewElements(context, environment);
-
+        TimeWrapper.getInstance().nextFrame();
     }
 
     private void mouseListen(MouseMoveEvent mouse) {
         MouseListener.getInstance().setMouseX( mouse.getRelativeX(canvas.getElement()) );
         MouseListener.getInstance().setMouseY( mouse.getRelativeY(canvas.getElement()) );
-        presenter.action( GameContract.ActionType.MOVE_TARGET, environment );
+        presenter.action( GameContract.ActionType.MOVE_TARGET);
         presenter.action( GameContract.ActionType.GUN_TURN, environment );
+    }
+
+    private void mouseClick(ClickEvent clickEvent) {
+        presenter.action(GameContract.ActionType.SHOOT);
     }
 
     private void arrowsSteering(KeyDownEvent keyDownEvent) {

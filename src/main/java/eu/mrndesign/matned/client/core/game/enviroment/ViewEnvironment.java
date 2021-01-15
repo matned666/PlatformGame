@@ -8,7 +8,6 @@ public interface ViewEnvironment extends BaseModel {
      * A View object to be placed in a view part - clone of a model object
      */
 
-
     boolean isMouseOn();
     boolean collisionWith(ViewEnvironment environment);
     String getPrefix();

@@ -38,6 +38,36 @@ public enum Direction {
         }
     }
 
+    public double getShootXSpeed(double speed) {
+        switch (this) {
+            case UP_RIGHT:
+                return speed / 2;
+            case RIGHT_DOWN:
+            case DOWN:
+            case RIGHT:
+                return speed;
+            case LEFT_UP:
+                return - speed / 2;
+            case DOWN_LEFT:
+            case LEFT:
+                return -speed;
+            default:
+                return 0;
+        }
+    }
+
+    public double getShootYSpeed(double speed) {
+        switch (this) {
+            case UP:
+                return -speed;
+            case UP_RIGHT:
+            case LEFT_UP:
+                return -speed / 2;
+            default:
+                return 0;
+        }
+    }
+
     private static double angle;
 
     public static Direction turnToMouse(double xPos, double yPos) {

@@ -11,6 +11,7 @@ public class GameContract {
 
     public interface Presenter {
         void heroMove(Direction direction);
+        void action(ActionType action);
         void action(ActionType action, List<ViewEnvironment> environments);
 
         String backGround();
@@ -19,8 +20,9 @@ public class GameContract {
     enum ActionType{
         MOVE_TARGET,
         GUN_TURN,
-        GUN_STICK,
-        UPDATE
+        SHOOT,
+        UPDATE,
+        PUT_ENEMY
     }
 
 }

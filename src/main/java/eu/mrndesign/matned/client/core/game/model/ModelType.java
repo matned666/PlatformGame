@@ -5,7 +5,9 @@ public enum ModelType {
     HERO,
     HERO_GUN,
     TARGET,
-    ENEMY;
+    ENEMY,
+    BOMB,
+    TEMPORARY;
 
 
     public String img(){

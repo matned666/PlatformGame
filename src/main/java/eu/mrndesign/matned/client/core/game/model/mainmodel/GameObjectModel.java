@@ -1,31 +1,42 @@
-package eu.mrndesign.matned.client.core.game.model;
+package eu.mrndesign.matned.client.core.game.model.mainmodel;
 
-public class GameObjectModel implements GameObject {
+import eu.mrndesign.matned.client.core.game.model.Id;
+import eu.mrndesign.matned.client.core.game.model.ModelType;
 
-    private long id;
+import static eu.mrndesign.matned.client.core.utils.Constants.*;
+
+public final class GameObjectModel implements GameObject {
+
+    private final long id;
     private final String name;
     private String image;
     private int health;
-    private final ModelType modelType;
+    private int frameDuration;
+    protected ModelType modelType;
     private final double maxSpeed;
     private final int hitPower;
+    private double speedX;
+    private double speedY;
     private double xPos;
     private double yPos;
     private final double xSize;
     private final double ySize;
 
-    private GameObjectModel(GameObjectModelBuilder builder) {
+    protected GameObjectModel(GameObjectModelBuilder builder) {
         id = Id.getInstance().nextId();
         this.name = builder.name;
         this.image = builder.image;
         this.health = builder.health;
+        this.frameDuration = builder.frameDuration;
         this.modelType = builder.modelType;
         this.maxSpeed = builder.maxSpeed;
         this.hitPower = builder.hitPower;
-        this.xPos = builder.xPos;;
-        this.yPos = builder.yPos;;
-        this.xSize = builder.xSize;;
-        this.ySize = builder.ySize;;
+        this.speedX = builder.speedX;
+        this.speedY = builder.speedY;
+        this.xPos = builder.xPos;
+        this.yPos = builder.yPos;
+        this.xSize = builder.xSize;
+        this.ySize = builder.ySize;
     }
 
     @Override
@@ -49,6 +60,21 @@ public class GameObjectModel implements GameObject {
     }
 
     @Override
+    public int frameDuration() {
+        return frameDuration;
+    }
+
+    @Override
+    public void setFrameDuration(int duration) {
+        this.frameDuration = duration;
+    }
+
+    @Override
+    public void nextFrame() {
+        frameDuration -= 1;
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }
@@ -69,8 +95,46 @@ public class GameObjectModel implements GameObject {
     }
 
     @Override
+    public void setModelType(ModelType modelType) {
+        this.modelType = modelType;
+    }
+
+    @Override
     public void receiveHit(int hitPoints) {
         health -= hitPoints;
+    }
+
+    @Override
+    public boolean collidesWith(GameObject collider) {
+        return (xPos+xSize >= collider.getxPos()) &&
+                (yPos+ySize >= collider.getyPos()) &&
+                (xPos <= collider.getxPos()+collider.getxSize()) &&
+                (yPos <= collider.getyPos()+collider.getySize());
+    }
+
+    @Override
+    public boolean isOutOfBorders() {
+        return xPos <= -BOMB_SIZE && yPos <= -BOMB_SIZE && xPos >= CANVAS_WIDTH && yPos >= CANVAS_HEIGHT;
+    }
+
+    @Override
+    public double getSpeedX() {
+        return speedX;
+    }
+
+    @Override
+    public double getSpeedY() {
+        return speedY;
+    }
+
+    @Override
+    public void setSpeedX(double speed) {
+        this.speedX = speed;
+    }
+
+    @Override
+    public void setSpeedY(double speed) {
+        this.speedY = speed;
     }
 
     @Override
@@ -118,6 +182,7 @@ public class GameObjectModel implements GameObject {
         private String name;
         private final String image;
         private final int health;
+        private int frameDuration;
         private final ModelType modelType;
         private double maxSpeed;
         private int hitPower;
@@ -125,6 +190,8 @@ public class GameObjectModel implements GameObject {
         private double yPos;
         private double xSize;
         private double ySize;
+        private double speedX;
+        private double speedY;
 
         public GameObjectModelBuilder(String image, int health, ModelType modelType) {
             this.image = image;
@@ -142,8 +209,23 @@ public class GameObjectModel implements GameObject {
             return this;
         }
 
+        public GameObjectModelBuilder speedX(double speedX){
+            this.speedX = speedX;
+            return this;
+        }
+
+        public GameObjectModelBuilder speedY(double speedY){
+            this.speedY = speedY;
+            return this;
+        }
+
         public GameObjectModelBuilder hitPower(int hitPower){
             this.hitPower = hitPower;
+            return this;
+        }
+
+        public GameObjectModelBuilder frameDuration(int frameDuration){
+            this.frameDuration = frameDuration;
             return this;
         }
 

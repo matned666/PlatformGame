@@ -9,6 +9,8 @@ public class Environment implements ViewEnvironment {
 
     private final long id;
     private String image;
+    private double speedX;
+    private double speedY;
     private double xPos;
     private double yPos;
     private final double xSize;
@@ -20,6 +22,8 @@ public class Environment implements ViewEnvironment {
     public Environment(long id, String image, double xPos, double yPos, double xSize, double ySize) {
         this.id = id;
         this.image = image;
+        speedX = 0;
+        speedY = 0;
         this.xPos = xPos;
         this.yPos = yPos;
         this.xSize = xSize;
@@ -31,6 +35,26 @@ public class Environment implements ViewEnvironment {
     @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public double getSpeedX() {
+        return speedX;
+    }
+
+    @Override
+    public double getSpeedY() {
+        return speedY;
+    }
+
+    @Override
+    public void setSpeedX(double speed) {
+        this.speedX = speed;
+    }
+
+    @Override
+    public void setSpeedY(double speed) {
+        this.speedY = speed;
     }
 
     //    checks if there is a mouse on the environment object

@@ -1,7 +1,7 @@
 package eu.mrndesign.matned.client.core.game.utils;
 
-import eu.mrndesign.matned.client.core.game.model.GameObject;
-import eu.mrndesign.matned.client.core.game.model.GameObjectModel;
+import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObject;
+import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObjectModel;
 import eu.mrndesign.matned.client.core.game.model.ModelType;
 
 import static eu.mrndesign.matned.client.core.utils.Constants.*;
