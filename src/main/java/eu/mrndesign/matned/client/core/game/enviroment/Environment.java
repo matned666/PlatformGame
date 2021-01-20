@@ -1,10 +1,5 @@
 package eu.mrndesign.matned.client.core.game.enviroment;
 
-
-import eu.mrndesign.matned.client.core.game.utils.MouseListener;
-
-import static eu.mrndesign.matned.client.core.utils.Constants.ENVIRONMENT_FRAME;
-
 public class Environment implements ViewEnvironment {
 
     private final long id;
@@ -15,9 +10,6 @@ public class Environment implements ViewEnvironment {
     private double yPos;
     private final double xSize;
     private final double ySize;
-    private boolean step;
-
-    private final double objectBorderThickness;
 
     public Environment(long id, String image, double xPos, double yPos, double xSize, double ySize) {
         this.id = id;
@@ -28,8 +20,6 @@ public class Environment implements ViewEnvironment {
         this.yPos = yPos;
         this.xSize = xSize;
         this.ySize = ySize;
-        this.objectBorderThickness = ENVIRONMENT_FRAME;
-        step = false;
     }
 
     @Override
@@ -55,35 +45,6 @@ public class Environment implements ViewEnvironment {
     @Override
     public void setSpeedY(double speed) {
         this.speedY = speed;
-    }
-
-    //    checks if there is a mouse on the environment object
-    @Override
-    public boolean isMouseOn() {
-        double mouseX = MouseListener.getInstance().getMouseX();
-        double mouseY = MouseListener.getInstance().getMouseY();
-        return mouseX >= xPos && mouseX <= xPos+xSize && mouseY >= yPos && mouseY <= yPos+ySize;
-    }
-
-//    checks if his object collides with another object
-    @Override
-    public boolean collisionWith(ViewEnvironment environment) {
-        double eXPos = environment.getxPos();
-        double eYPos = environment.getyPos();
-        double eXSize = environment.getxSize();
-        double eYSize = environment.getySize();
-        return (xPos+xSize- objectBorderThickness >= eXPos) && (yPos+ySize- objectBorderThickness >= eYPos) && (xPos+ objectBorderThickness <= eXPos+eXSize) && (yPos+ objectBorderThickness <= eYPos+eYSize);
-    }
-
-    @Override
-    public String getPrefix() {
-        if (step) return "s";
-        else return "r";
-    }
-
-    @Override
-    public void setStep() {
-        step = !step;
     }
 
     @Override

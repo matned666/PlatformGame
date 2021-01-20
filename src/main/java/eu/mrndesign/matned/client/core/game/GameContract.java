@@ -17,7 +17,7 @@ public class GameContract {
         String backGround();
     }
 
-    enum ActionType{
+    public enum ActionType{
         MOVE_TARGET,
         GUN_TURN,
         SHOOT,

@@ -8,6 +8,8 @@ public class Texts {
         lang = LanguageSingleton.getInstance().getLanguage();
     }
 
+    public static final String SQUIRREL = "Wiewiór";
+    public static final String ENEMY_1 = "Enemy1";
     public static final String TITLE_TEXT_STYLE = "h1";
 
     public static String gameTitle() {

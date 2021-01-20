@@ -5,12 +5,16 @@ import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObject;
 import eu.mrndesign.matned.client.core.game.model.mainmodel.GameObjectModel;
 import eu.mrndesign.matned.client.core.game.utils.TimeWrapper;
 import eu.mrndesign.matned.client.core.settings.SettingsSingleton;
+import eu.mrndesign.matned.client.core.utils.Constants;
+import eu.mrndesign.matned.client.core.utils.Texts;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static eu.mrndesign.matned.client.core.game.utils.StaticObjects.*;
-import static eu.mrndesign.matned.client.core.utils.Constants.CANVAS_WIDTH;
+import static eu.mrndesign.matned.client.core.utils.Constants.*;
+import static eu.mrndesign.matned.client.core.utils.Images.ENEMY_1_FILE_NAME;
+import static eu.mrndesign.matned.client.core.utils.Images.PNG;
 
 public final class GameModel implements Game {
 
@@ -86,17 +90,17 @@ public final class GameModel implements Game {
 
     @Override
     public void putEnemy() {
-        if (TimeWrapper.getInstance().getFrameNo() % 50 == 0) {
+        if (TimeWrapper.getInstance().getFrameNo() % PUTTING_NEW_ENEMY_COOLDOWN == 0) {
             addObject(
-                    new GameObjectModel.GameObjectModelBuilder("enemy2.png", 20, ModelType.ENEMY)
-                            .xSize(66)
-                            .ySize(120)
+                    new GameObjectModel.GameObjectModelBuilder(ENEMY_1_FILE_NAME + "2" + PNG, Constants.ENEMY_1_BASE_HEALTH, ModelType.ENEMY)
+                            .xSize(ENEMY1_X_SIZE)
+                            .ySize(ENEMY1_Y_SIZE)
                             .yPos(0)
-                            .xPos(Math.random()*CANVAS_WIDTH - 66)
-                            .hitPower(50)
-                            .speedY(5)
-                            .frameDuration(20)
-                            .name("Wiewiór")
+                            .xPos(Math.random()*CANVAS_WIDTH - ENEMY1_X_SIZE)
+                            .hitPower(ENEMY1_HIT_POWER)
+                            .speedY(ENEMY1_SPEED_Y)
+                            .frameDuration(BASIC_COOLDOWN_DURATION)
+                            .name(Texts.SQUIRREL)
                             .build());
         }
     }

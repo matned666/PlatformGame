@@ -28,7 +28,4 @@ public class Id {
         return ++id;
     }
 
-    public long getId() {
-        return id;
-    }
 }

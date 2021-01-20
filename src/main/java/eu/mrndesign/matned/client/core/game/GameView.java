@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.user.client.Timer;
+import eu.mrndesign.matned.client.core.game.present.GamePresenter;
 import eu.mrndesign.matned.client.core.game.enviroment.ViewEnvironment;
 import eu.mrndesign.matned.client.core.game.utils.MouseListener;
 import eu.mrndesign.matned.client.core.game.utils.TimeWrapper;
@@ -28,7 +29,7 @@ public class GameView implements GameContract.View {
         this.canvas = canvas;
         canvas.setFocus(true);
         this.context = canvas.getContext2d();
-        presenter = new GamePresenter();
+        presenter = new GamePresenter(this);
         initAll();
         final Timer timer;
         timer = new Timer() {
