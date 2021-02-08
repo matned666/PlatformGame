@@ -89,14 +89,15 @@ public final class GameModel implements Game {
     }
 
     @Override
-    public void putEnemy() {
+    public void putEnemy() {  // TODO set it to level data
         if (TimeWrapper.getInstance().getFrameNo() % PUTTING_NEW_ENEMY_COOLDOWN == 0) {
             addObject(
                     new GameObjectModel.GameObjectModelBuilder(ENEMY_1_FILE_NAME + "2" + PNG, Constants.ENEMY_1_BASE_HEALTH, ModelType.ENEMY)
                             .xSize(ENEMY1_X_SIZE)
                             .ySize(ENEMY1_Y_SIZE)
                             .yPos(0)
-                            .xPos(Math.random()*CANVAS_WIDTH - ENEMY1_X_SIZE)
+                            .xPos(Math.random()*(CANVAS_WIDTH - ENEMY1_X_SIZE))
+                            .pointsWhenDestroyed(1)
                             .hitPower(ENEMY1_HIT_POWER)
                             .speedY(ENEMY1_SPEED_Y)
                             .frameDuration(BASIC_COOLDOWN_DURATION)

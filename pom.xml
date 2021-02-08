@@ -9,6 +9,22 @@
   <version>HEAD-SNAPSHOT</version>
   <packaging>gwt-app</packaging>
   <name>platform</name>
+  <description>GWT artistic Shooter game</description>
+
+  <developers>
+    <developer>
+      <id>matned</id>
+      <name>Mateusz Niedbal</name>
+      <email>mat.niedbal@mrndesign.eu</email>
+      <organization>mrndesign.eu</organization>
+      <organizationUrl>https://mrndesign.eu</organizationUrl>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

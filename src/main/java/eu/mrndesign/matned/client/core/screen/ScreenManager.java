@@ -1,6 +1,5 @@
 package eu.mrndesign.matned.client.core.screen;
 
-import com.google.gwt.user.client.ui.RootPanel;
 import eu.mrndesign.matned.client.core.game.GameScreen;
 import eu.mrndesign.matned.client.core.game.GameScreenInterface;
 import eu.mrndesign.matned.client.core.menu.MenuScreen;
@@ -17,10 +16,9 @@ public class ScreenManager implements
 {
 
     private ScreenInterface screen;
-    private final RootPanel rootPanel;
 
-    public ScreenManager(RootPanel rootPanel) {
-        this.rootPanel = rootPanel;
+    public ScreenManager() {
+
     }
 
     //    on start game we have menu
@@ -35,7 +33,7 @@ public class ScreenManager implements
         if (screen != null) screen.hide();
         switch (screenType) {
             case GAME: {
-                screen = new GameScreen(this, this);
+                screen = new GameScreen(this);
                 break;
             }
             case SETTINGS: {

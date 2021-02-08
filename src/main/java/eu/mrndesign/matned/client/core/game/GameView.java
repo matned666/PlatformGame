@@ -6,6 +6,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.Label;
 import eu.mrndesign.matned.client.core.game.present.GamePresenter;
 import eu.mrndesign.matned.client.core.game.enviroment.ViewEnvironment;
 import eu.mrndesign.matned.client.core.game.utils.MouseListener;
@@ -17,6 +19,8 @@ import java.util.List;
 import static eu.mrndesign.matned.client.core.game.utils.Paint.paintOnCanva;
 import static eu.mrndesign.matned.client.core.game.utils.Paint.putViewElements;
 import static eu.mrndesign.matned.client.core.utils.Constants.*;
+import static eu.mrndesign.matned.client.core.utils.Texts.HEALTH_LABEL;
+import static eu.mrndesign.matned.client.core.utils.Texts.POINTS_LABEL;
 
 public class GameView implements GameContract.View {
 
@@ -24,9 +28,11 @@ public class GameView implements GameContract.View {
     private final Context2d context;
     private final GameContract.Presenter presenter;
     private List<ViewEnvironment> environment;
+    private final List<Label> labels;
 
-    public GameView(Canvas canvas) {
+    public GameView(Canvas canvas, List<Label> labels) {
         this.canvas = canvas;
+        this.labels = labels;
         canvas.setFocus(true);
         this.context = canvas.getContext2d();
         presenter = new GamePresenter(this);
@@ -40,6 +46,12 @@ public class GameView implements GameContract.View {
         };
         TimeWrapper.getInstance().initTimer(timer);
         TimeWrapper.getInstance().run();
+    }
+
+    @Override
+    public void labelsUpdate(int pnt, int lives) {
+        labels.get(0).getElement().setInnerText(POINTS_LABEL() + pnt);
+        labels.get(1).getElement().setInnerText(HEALTH_LABEL() + lives);
     }
 
     private void initAll() {
@@ -86,7 +98,6 @@ public class GameView implements GameContract.View {
     private void moveHero(Direction d) {
         presenter.heroMove(d);
     }
-
 }
 
 

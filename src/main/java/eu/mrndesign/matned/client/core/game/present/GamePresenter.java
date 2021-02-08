@@ -12,8 +12,10 @@ import static eu.mrndesign.matned.client.core.utils.Constants.HERO_MOVE_DISTANCE
 
 public class GamePresenter extends BaseGamePresenter implements GameContract.Presenter {
 
+    private GameContract.View view;
 
-    public GamePresenter(GameView gameView) {
+    public GamePresenter(GameContract.View gameView) {
+        this.view = gameView;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class GamePresenter extends BaseGamePresenter implements GameContract.Pre
                 break;
             }
             case UPDATE: {
-                updateEnvironment(environments);
+                updateEnvironment(environments, view);
                 break;
             }
         }

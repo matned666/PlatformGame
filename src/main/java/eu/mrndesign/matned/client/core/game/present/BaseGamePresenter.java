@@ -1,6 +1,7 @@
 package eu.mrndesign.matned.client.core.game.present;
 
 import eu.mrndesign.matned.client.core.game.Direction;
+import eu.mrndesign.matned.client.core.game.GameContract;
 import eu.mrndesign.matned.client.core.game.enviroment.Environment;
 import eu.mrndesign.matned.client.core.game.enviroment.ViewEnvironment;
 import eu.mrndesign.matned.client.core.game.model.Game;
@@ -71,7 +72,7 @@ public abstract class BaseGamePresenter {
         game.getGun().setImage(Images.GUN_FILE_BASE_NAME + getDirection(gun.getxPos(), gun.getyPos()).imgMark() + PNG);
     }
 
-    protected void updateEnvironment(List<ViewEnvironment> environments) {
+    protected void updateEnvironment(List<ViewEnvironment> environments, GameContract.View view) {
         deleteUsedTemporaryObjects();
         for (GameObject gameObject : game.objectsInGame()) {
             lookForTemporaryObjects(gameObject);
@@ -83,7 +84,8 @@ public abstract class BaseGamePresenter {
             }
             updateGameEnvironmentList(environments, gameObject);
         }
-        checkForRemovedEnvironment(environments);
+        compareEnvironmentListWithGameModelObjectsList(environments);
+        view.labelsUpdate(game.getPoints(), game.getHero().getHealth());
     }
 
 
@@ -105,12 +107,13 @@ public abstract class BaseGamePresenter {
     }
 
     private void checkForFallenEnemies(GameObject gameObject) {
-        if (gameObject.modelType() == ModelType.ENEMY && gameObject.getxPos() > CANVAS_HEIGHT) {
+        if (gameObject.modelType() == ModelType.ENEMY && gameObject.getyPos() > CANVAS_HEIGHT) {
+            game.getHero().receiveHit(1);
             game.remove(gameObject);
         }
     }
 
-    private void checkForRemovedEnvironment(List<ViewEnvironment> environments) {
+    private void compareEnvironmentListWithGameModelObjectsList(List<ViewEnvironment> environments) {
         for (ViewEnvironment e :
                 environments) {
             isViewEnvironmentToDelete = true;
@@ -165,6 +168,7 @@ public abstract class BaseGamePresenter {
         if (gameObject.getHealth() <= 0) {
             gameObject.setModelType(ModelType.TEMPORARY);
             gameObject.setFrameDuration(OBJECT_REMOVAL_HOLD_DOWN);
+            game.addPoints(gameObject.getPoints());
         }
     }
 

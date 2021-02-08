@@ -9,6 +9,7 @@ public interface GameObject extends BaseModel {
     void setFrameDuration(int duration);
     void nextFrame();
     int getHealth();
+    int getPoints();
     String getName();
     double getMaxSpeed();
     int getHitPower();

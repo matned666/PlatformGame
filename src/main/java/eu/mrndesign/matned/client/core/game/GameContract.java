@@ -7,6 +7,7 @@ import java.util.List;
 public class GameContract {
 
     public interface View {
+        void labelsUpdate(int points, int lives);
     }
 
     public interface Presenter {

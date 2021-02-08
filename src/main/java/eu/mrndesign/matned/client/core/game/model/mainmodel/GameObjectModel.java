@@ -15,6 +15,7 @@ public final class GameObjectModel implements GameObject {
     protected ModelType modelType;
     private final double maxSpeed;
     private final int hitPower;
+    private int pointsWhenDestroyed;
     private double speedX;
     private double speedY;
     private double xPos;
@@ -25,6 +26,7 @@ public final class GameObjectModel implements GameObject {
     protected GameObjectModel(GameObjectModelBuilder builder) {
         id = Id.getInstance().nextId();
         this.name = builder.name;
+        this.pointsWhenDestroyed = builder.pointsWhenDestroyed;
         this.image = builder.image;
         this.health = builder.health;
         this.frameDuration = builder.frameDuration;
@@ -77,6 +79,11 @@ public final class GameObjectModel implements GameObject {
     @Override
     public int getHealth() {
         return health;
+    }
+
+    @Override
+    public int getPoints() {
+        return pointsWhenDestroyed;
     }
 
     @Override
@@ -182,6 +189,7 @@ public final class GameObjectModel implements GameObject {
         private String name;
         private final String image;
         private final int health;
+        private int pointsWhenDestroyed;
         private int frameDuration;
         private final ModelType modelType;
         private double maxSpeed;
@@ -201,6 +209,11 @@ public final class GameObjectModel implements GameObject {
 
         public GameObjectModelBuilder name(String name){
             this.name = name;
+            return this;
+        }
+
+        public GameObjectModelBuilder pointsWhenDestroyed(int pointsWhenDestroyed){
+            this.pointsWhenDestroyed = pointsWhenDestroyed;
             return this;
         }
 
